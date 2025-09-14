@@ -6,7 +6,7 @@ import Table from "@/Components/Table";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, usePage } from "@inertiajs/react";
 import React from "react";
-import hasAnyPermissions from "resources/utils/Permissions";
+import hasAnyPermissions from "../../../Utils/Permissions";
 
 export default function Index({ auth }) {
     const { permissions, filters } = usePage().props;
@@ -47,9 +47,15 @@ export default function Index({ auth }) {
                             </tr>
                         </Table.Head>
                         <Table.Body>
-                            {permissions.data.map((permissions, i)=> (
-                                <tr key={{i}}>
-                                    <Table.Td>{++1 + (permissions.current_page-1) * permissions.per_page}</Table.Td>
+                            {permissions.data.map((permissions, i) => (
+                                <tr key={i}>
+                                    {/* <Table.Td>{++1 + (permissions.current_page-1) * permissions.per_page}</Table.Td> */}
+                                    <Table.Td>
+                                        {i +
+                                            1 +
+                                            (permissions.current_page - 1) *
+                                                permissions.per_page}
+                                    </Table.Td>
                                     <Table.Td>{permissions.name}</Table.Td>
                                     <Table.Td>
                                         <div className="flex items-center gap-2">
@@ -88,7 +94,9 @@ export default function Index({ auth }) {
                     </Table>
                 </Table.Card>
                 <div className="flex items-center justify-center">
-                    {permissions.last_page !== 1 && (<Pagination links={permissions.links} />)}
+                    {permissions.last_page !== 1 && (
+                        <Pagination links={permissions.links} />
+                    )}
                 </div>
             </Container>
         </AuthenticatedLayout>

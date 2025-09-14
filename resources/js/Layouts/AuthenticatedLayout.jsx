@@ -4,7 +4,7 @@ import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link, usePage } from "@inertiajs/react";
 import { useState } from "react";
-import hasAnyPermissions from "resources/utils/Permissions";
+import hasAnyPermissions from "../../Utils/Permissions";
 
 export default function AuthenticatedLayout({ header, children }) {
     const user = usePage().props.auth.user;
